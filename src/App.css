@@ -1,0 +1,286 @@
+```css
+:root {
+  --accent: #00bcd4;
+  --accent-bg: #e0f7fa;
+  --accent-border: #008fa1;
+  --border: #d9e1e8;
+  --text: #333333;
+  --text-h: #000000;
+  --social-bg: #f1f5f9;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* General styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f8fa;
+  color: var(--text);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* All titles: black, without wavy underlines */
+h1,
+h2,
+h3 {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* Header */
+.header {
+  padding: 25px 20px;
+  text-align: center;
+  background-color: white;
+  border-bottom: 1px solid var(--border);
+}
+
+.header h1 {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 32px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.header p {
+  margin: 8px 0 0;
+  color: #607d8b;
+}
+
+/* Navigation bar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 15px;
+  background-color: #6690a5;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: var(--accent);
+}
+
+/* Main container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 35px 20px;
+  flex-grow: 1;
+}
+
+.container h1 {
+  color: #000000;
+  text-align: center;
+  text-decoration: none;
+}
+
+.section-title {
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 30px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.section-description {
+  margin-bottom: 30px;
+  text-align: center;
+  color: #607d8b;
+}
+
+/* Students: side by side */
+.students-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+  align-items: stretch;
+}
+
+/* Student card */
+.student-card {
+  min-width: 0;
+  padding: 25px 20px;
+  background-color: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.student-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+/* Student photo */
+.student-card-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.student-image {
+  width: 160px;
+  height: 160px;
+  max-width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-bg);
+}
+
+/* Student badge */
+.student-badge {
+  position: absolute;
+  bottom: -8px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  color: #006875;
+  background-color: var(--accent-bg);
+  border: 1px solid #b2ebf2;
+  font-size: 13px;
+}
+
+/* Student name */
+.student-card h3 {
+  margin: 18px 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 22px;
+  color: #000000;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+/* Student information */
+.student-information {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.student-information p {
+  margin: 0;
+  padding: 9px 0;
+  border-bottom: 1px solid #edf0f2;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.student-information strong {
+  margin-right: 5px;
+}
+
+.student-information a {
+  color: #008fa1;
+  text-decoration: none;
+}
+
+.student-information a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+button,
+.contact-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  color: #000000;
+  background-color: #00bcd4;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+button:hover,
+.contact-button:hover {
+  background-color: #80deea;
+  border-color: var(--accent-border);
+}
+
+button:focus-visible,
+.contact-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  padding: 20px;
+  background-color: #6690a5;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+/* Medium screens: two students per row */
+@media (min-width: 601px) and (max-width: 900px) {
+  .students-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .container {
+    padding: 30px 20px;
+  }
+}
+
+/* Small screens: one student per row */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 27px;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .container {
+    padding: 25px 15px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .students-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .student-image {
+    width: 140px;
+    height: 140px;
+  }
+}
+```
