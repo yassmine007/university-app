@@ -1,4 +1,4 @@
-```css
+
 :root {
   --accent: #00bcd4;
   --accent-bg: #e0f7fa;
@@ -254,7 +254,7 @@ button:focus-visible,
   }
 }
 
-/* Small screens: one student per row */
+
 @media (max-width: 600px) {
   .header h1 {
     font-size: 27px;
@@ -283,4 +283,3 @@ button:focus-visible,
     height: 140px;
   }
 }
-```

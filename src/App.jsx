@@ -9,6 +9,7 @@ import img3 from "./assets/image3.jpeg";
 import Header from "./components/Header.jsx";
 import Navbar from "./components/Navbar.jsx";
 import StudentCard from "./components/StudentCard.jsx";
+import StudentForm from "./components/StudentForm.jsx";
 import Footer from "./components/Footer.jsx";
 
 const initialStudents = [
@@ -49,66 +50,41 @@ const initialStudents = [
 
 function App() {
   const [students, setStudents] = useState(initialStudents);
-  const [nom, setNom] = useState("");
-  const [email, setEmail] = useState("");
-  const [tel, setTel] = useState("");
-  const [filiere, setFiliere] = useState("");
-  const [ville, setVille] = useState("");
   const [filtre, setFiltre] = useState("Toutes");
 
- 
-  function ajouterEtudiant(e) {
-    e.preventDefault();
+  function ajouterEtudiant(nouvelEtudiant) {
+    const etudiantAvecId = {
+      ...nouvelEtudiant,
+      id: Date.now(),
+    };
 
-    if (!nom.trim() || !email.trim() || !filiere.trim()) {
-      alert("Veuillez remplir le nom, l'email et la filière.");
+    setStudents((anciensEtudiants) => [
+      ...anciensEtudiants,
+      etudiantAvecId,
+    ]);
+  }
+
+  function supprimerEtudiant(id) {
+    setStudents((anciensEtudiants) =>
+      anciensEtudiants.filter((student) => student.id !== id)
+    );
+  }
+
+  function modifierEtudiant(id) {
+    const nouveauNom = window.prompt("Entrez le nouveau nom :");
+
+    if (nouveauNom === null || nouveauNom.trim() === "") {
       return;
     }
 
-    const nouvelEtudiant = {
-      id: Date.now(),
-      nom: nom,
-      email: email,
-      tel: tel,
-      filiere: filiere,
-      annee: "2026/2027",
-      groupe: "GLSI2B",
-      ville: ville,
-      image: null,
-    };
-
-    setStudents([...students, nouvelEtudiant]);
-
-    setNom("");
-    setEmail("");
-    setTel("");
-    setFiliere("");
-    setVille("");
+    setStudents((anciensEtudiants) =>
+      anciensEtudiants.map((student) =>
+        student.id === id
+          ? { ...student, nom: nouveauNom.trim() }
+          : student
+      )
+    );
   }
-
-  
-  function supprimerEtudiant(id) {
-    setStudents(students.filter((student) => student.id !== id));
-  }
-
-
-function modifierEtudiant(id) {
-  const nouveauNom = window.prompt("Entrez le nouveau nom :");
-
-  if (nouveauNom === null || nouveauNom.trim() === "") {
-    return;
-  }
-
-  setStudents((anciensEtudiants) =>
-    anciensEtudiants.map((student) =>
-      student.id === id
-        ? { ...student, nom: nouveauNom.trim() }
-        : student
-    )
-  );
-}
-
-
 
   const studentsFiltres =
     filtre === "Toutes"
@@ -129,44 +105,7 @@ function modifierEtudiant(id) {
 
         <h2 className="section-title">Ajouter un étudiant</h2>
 
-        <form onSubmit={ajouterEtudiant}>
-          <input
-            type="text"
-            placeholder="Nom et prénom"
-            value={nom}
-            onChange={(e) => setNom(e.target.value)}
-          />
-
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <input
-            type="text"
-            placeholder="Téléphone"
-            value={tel}
-            onChange={(e) => setTel(e.target.value)}
-          />
-
-          <input
-            type="text"
-            placeholder="Filière"
-            value={filiere}
-            onChange={(e) => setFiliere(e.target.value)}
-          />
-
-          <input
-            type="text"
-            placeholder="Ville"
-            value={ville}
-            onChange={(e) => setVille(e.target.value)}
-          />
-
-          <button type="submit">Ajouter</button>
-        </form>
+        <StudentForm onAjouter={ajouterEtudiant} />
 
         <h2 className="section-title">Liste des étudiants</h2>
 
